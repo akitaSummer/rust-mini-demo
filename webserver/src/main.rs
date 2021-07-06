@@ -7,7 +7,7 @@ use std::net::{TcpListener, TcpStream};
 use std::fs;
 
 fn handle_client(mut stream: TcpStream) {
-    let mut buffer = [0; 512];
+    let mut buffer = [0; 1024];
     stream.read(&mut buffer).unwrap();
     println!("Request: {}", String::from_utf8_lossy(&buffer));
 
