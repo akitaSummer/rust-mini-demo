@@ -140,7 +140,7 @@ impl BuilderContext {
             if let Some(default) = f.opts.default.as_ref() {
                 let ast: TokenStream = default.parse().unwrap();
                 return quote! {
-                    #name: self.#name.take().unwrap_or_else(|| #ast);
+                    #name: self.#name.take().unwrap_or_else(|| #ast)
                 };
             }
 
