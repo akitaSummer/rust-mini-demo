@@ -1,8 +1,8 @@
-use v8_live::{JsRuntime, JsRuntimeParams};
+use v8_live::JsRuntime;
 
 fn main() {
     JsRuntime::init();
-    let mut runtime = JsRuntime::new(JsRuntimeParams::default());
+    let mut runtime = JsRuntime::new(None);
 
     let code = r#"
         function hello_world() {
