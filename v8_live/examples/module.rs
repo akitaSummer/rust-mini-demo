@@ -5,17 +5,18 @@ fn main() {
     let mut runtime = JsRuntime::new(None);
 
     let code = r#"
-        function hello_world() {
+        async function hello_world() {
             print("Hello Rust");
             // return {
             //     status: 200,
             //     message: "Hello World"
             // };
-            return fetch("https://www.rust-lang.org/")
+            return await fetch("https://www.rust-lang.org/")
         }
-        hello_world();
+        let result = await hello_world();
+        print(result);
     "#;
 
-    let result = runtime.execute_script(code, false);
+    let result = runtime.execute_script(code, true);
     println!("Result is: {:#?}", result);
 }
