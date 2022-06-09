@@ -1,14 +1,14 @@
 use deno_core::anyhow::Result;
 use deno_runtime::{
-    deno_core::{self, resolve_url_or_path},
+    deno_core::{self, error::AnyError, resolve_url_or_path},
     ops::permissions,
     permissions::Permissions,
     worker::{MainWorker, WorkerOptions},
 };
 use deno_runtime_live::MainWorkerOptions;
+use tokio::runtime::Builder;
 
-#[tokio::main]
-async fn main() -> Result<()> {
+fn main() -> Result<()> {
     let options = MainWorkerOptions::default();
     // let js_file = format!("{}/examples/fetch.js", env!("CARGO_MANIFEST_DIR"));
     // let js_file = format!("{}/examples/rest.ts", env!("CARGO_MANIFEST_DIR"));
@@ -35,5 +35,6 @@ async fn main() -> Result<()> {
     };
     let local = tokio::task::LocalSet::new();
     local.block_on(&rt, fut)?;
+
     Ok(())
 }
