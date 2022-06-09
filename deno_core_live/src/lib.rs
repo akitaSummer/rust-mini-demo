@@ -1,5 +1,10 @@
+use std::time::Duration;
+
 use deno_core::{
-    anyhow::Result, resolve_url_or_path, serde::de::DeserializeOwned, serde_v8, v8, JsRuntime,
+    anyhow::{anyhow, Result},
+    resolve_url_or_path,
+    serde::de::DeserializeOwned,
+    serde_v8, v8, JsRuntime,
 };
 
 pub mod ops;
@@ -19,12 +24,22 @@ pub async fn execute_main_module(rt: &mut JsRuntime, path: impl AsRef<str>) -> R
     let url = resolve_url_or_path(path.as_ref())?;
     let id = rt.load_main_module(&url, None).await?;
     let mut receiver = rt.mod_evaluate(id);
-    tokio::select! {
-        resolved = &mut receiver => {
-            resolved.expect("failed to evaluate module")
-        },
-        _ = rt.run_event_loop(false) => {
-            receiver.await.expect("failed to evaluate module")
+    let timer = tokio::time::sleep(Duration::from_millis(1000));
+
+    let fut = async move {
+        loop {
+            tokio::select! {
+                resolved = &mut receiver => {
+                    return resolved.expect("failed to evaluate module")
+                },
+                _ = rt.run_event_loop(false) => {
+                }
+            }
         }
+    };
+
+    tokio::select! {
+        res = fut => res,
+        _ = timer => Err(anyhow!("js script timeout"))
     }
 }

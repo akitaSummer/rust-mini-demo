@@ -4,6 +4,7 @@ function print(data) {
 
 
 print("starting to fetch..."); 
-let res =  await fetch("https://www.baidu.com"); 
+let res =  await fetch({ url: "https://www.baidu.com", method: 'POST' }); 
 print(`status: ${res.status}`);
 print(`headers: ${JSON.stringify(res.headers)}`);
+print(`body: ${res.text()}`);
