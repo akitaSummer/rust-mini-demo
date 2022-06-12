@@ -1,5 +1,5 @@
 use deno_core::{anyhow::Result, JsRuntime, RuntimeOptions};
-use deno_core_live::eval;
+use deno_core_demo::eval;
 
 #[tokio::main]
 async fn main() -> Result<()> {

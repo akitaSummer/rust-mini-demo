@@ -1,7 +1,7 @@
 use std::rc::Rc;
 
 use deno_core::{anyhow::Result, FsModuleLoader, JsRuntime, RuntimeOptions};
-use deno_core_live::execute_main_module;
+use deno_core_demo::execute_main_module;
 
 #[tokio::main]
 async fn main() -> Result<()> {

@@ -1,4 +1,4 @@
-use v8_live::JsRuntime;
+use v8_demo::JsRuntime;
 
 fn main() {
     JsRuntime::init();

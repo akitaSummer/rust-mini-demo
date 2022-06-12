@@ -1,7 +1,7 @@
 use std::fs;
 
 use clap::{Parser, Subcommand};
-use v8_live::JsRuntime;
+use v8_demo::JsRuntime;
 
 const SS_FILE: &str = "snapshot.blob";
 

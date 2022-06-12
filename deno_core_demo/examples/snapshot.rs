@@ -1,4 +1,4 @@
-use deno_core_live::execute_main_module;
+use deno_core_demo::execute_main_module;
 use lazy_static::lazy_static;
 use std::rc::Rc;
 

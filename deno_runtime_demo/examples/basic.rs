@@ -5,7 +5,7 @@ use deno_runtime::{
     permissions::Permissions,
     worker::{MainWorker, WorkerOptions},
 };
-use deno_runtime_live::MainWorkerOptions;
+use deno_runtime_demo::MainWorkerOptions;
 use tokio::runtime::Builder;
 
 fn main() -> Result<()> {
