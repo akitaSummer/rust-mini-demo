@@ -14,7 +14,10 @@ fn main() -> Result<()> {
     // let js_file = format!("{}/examples/rest.ts", env!("CARGO_MANIFEST_DIR"));
     // let url = resolve_url_or_path(&js_file)?;
 
-    let url = resolve_url_or_path("/tmp/rest.js")?;
+    let url = resolve_url_or_path(&format!(
+        "{}/examples/tmp/rest.js",
+        env!("CARGO_MANIFEST_DIR")
+    ))?;
     let permissions = Permissions {
         net: Permissions::new_net(&Some(vec![]), false),
         ..Default::default()

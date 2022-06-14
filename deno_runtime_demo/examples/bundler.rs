@@ -9,5 +9,10 @@ async fn main() {
     let f = format!("{}/examples/rest.ts", env!("CARGO_MANIFEST_DIR"));
     let m = resolve_url_or_path(&f).unwrap();
     let (code, _) = deno_bundler::bundle(m, options).await.unwrap();
-    fs::write("/tmp/rest.js", code).await.unwrap();
+    fs::write(
+        format!("{}/examples/tmp/rest.js", env!("CARGO_MANIFEST_DIR")),
+        code,
+    )
+    .await
+    .unwrap();
 }
