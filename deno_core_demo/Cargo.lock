@@ -114,7 +114,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "deno_core_live"
+name = "deno_core_demo"
 version = "0.1.0"
 dependencies = [
  "deno_core",
