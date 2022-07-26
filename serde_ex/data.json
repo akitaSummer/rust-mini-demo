@@ -1,0 +1,15 @@
+{
+  "name": "akita",
+  "age": 26,
+  "phone": "777",
+  "pays": [
+    {
+      "amount": 32,
+      "tax_percent": 0.3
+    },
+    {
+      "amount": 77,
+      "tax_percent": 0.2
+    }
+  ]
+}
